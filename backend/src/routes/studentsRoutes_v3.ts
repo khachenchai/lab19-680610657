@@ -268,11 +268,11 @@ router.put('/', authenticateToken, async (req: CustomRequest, res: Response) => 
 });
 
 // DELETE
-router.put('/', authenticateToken, checkRoleAdmin, async (req: CustomRequest, res: Response) => {
+router.delete('/', authenticateToken, checkRoleAdmin, async (req: CustomRequest, res: Response) => {
   try {
-    const body = await req.body as { studentId: string };
+    const body = req.body as { studentId: string };
 
-    const user = req.user;
+    // const user = req.user;
 
     const student = await prisma.student.findUnique({
       where: { studentId: body.studentId },
